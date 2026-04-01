@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Postagem } from './postagem/entities/postagem.entity';
+import { PostagemModule } from './postagem/postagem.modules';
 
 @Module({
   imports: [
@@ -13,9 +15,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root', // usarname do bd
       password: 'root', // a senha do bd
       database: 'db_blogpessoal', // nome do bd
-      entities: [],
-      synchronize: true
-    })
+      entities: [Postagem],
+      synchronize: true,
+      logging: true,
+    }),
+    PostagemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
