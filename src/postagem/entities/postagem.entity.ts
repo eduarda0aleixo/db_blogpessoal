@@ -1,4 +1,4 @@
-import { IsNotEmpty, isNotEmpty } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name: "tb_postagem"}) // Cria uma tabela no banco de dados
