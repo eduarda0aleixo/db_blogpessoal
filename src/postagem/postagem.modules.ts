@@ -7,8 +7,8 @@ import { TemaModule } from "../tema/tema.module";
  
 @Module({
     imports: [TypeOrmModule.forFeature([Postagem]), TemaModule],
-    providers: [PostagemService],
-    controllers: [PostagemController],
-    exports: [TypeOrmModule]
+    providers: [PostagemService], // Classes que contêm lógica de negócio e podem ser injetadas em outros lugares
+    controllers: [PostagemController], // Classes que recebem as requisições HTTP
+    exports: [TypeOrmModule] // O que este módulo disponibiliza para outros módulos usarem
 })
 export class PostagemModule {}
