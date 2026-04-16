@@ -9,21 +9,16 @@ import { TemaModule } from './tema/tema.module';
 import { AuthModule } from './auth/auth.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { Usuario } from './usuario/entities/usuario.entity';
+import { ConfigModule } from '@nestjs/config';
+import { ProdService } from './data/services/prod.service';
 
 @Module({
   imports: [
-    // conexão com o banco de dados
-    TypeOrmModule.forRoot({
-      type: 'mysql', // tipo do bd
-      host: 'localhost', // local do bd
-      port: 3306, // porta do bd
-      username: 'root', // usarname do bd
-      password: 'root', // a senha do bd
-      database: 'db_blogpessoal', // nome do bd
-      entities: [Postagem, Tema, Usuario],
-      synchronize: true,
-      logging: true,
-    }),
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useClass: ProdService,
+      imports: [ConfigModule],
+  }),
     PostagemModule,
     TemaModule,
     AuthModule,
